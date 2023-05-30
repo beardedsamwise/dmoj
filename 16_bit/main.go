@@ -1,24 +1,29 @@
+// https://dmoj.ca/problem/16bitswonly
+
 package main
 
 import (
 	"bufio"
 	"fmt"
 	"os"
+	"strconv"
+	"strings"
 )
-
-// https://dmoj.ca/problem/16bitswonly
 
 func main() {
 	// get number of loops
 	num_loops := get_num_loops()
-	fmt.Println(num_loops)
 
 	// get input
+	var input []string
 	for i := 0; i < num_loops; i++ {
-		process_input()
+		input = append(input, process_input())
 	}
 
-	// TO DO: check if CPUs are 16 bit only
+	// check if CPUs are 16 bit only
+	for _, value := range input {
+		fmt.Println(check_processor(value))
+	}
 }
 
 // check if processor calculations are correct
@@ -38,8 +43,21 @@ func get_num_loops() int {
 }
 
 // process calculations from input
-func process_input() {
+func process_input() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
+	return scanner.Text()
+}
 
+// check each processor
+func check_processor(calc string) string {
+	s := strings.Fields(calc)
+	num1, _ := strconv.Atoi(s[0])
+	num2, _ := strconv.Atoi(s[1])
+	result, _ := strconv.Atoi(s[2])
+	if num1*num2 != result {
+		return "16 BIT S/W ONLY"
+	} else {
+		return "POSSIBLE DOUBLE SIGMA"
+	}
 }
