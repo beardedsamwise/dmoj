@@ -26,30 +26,18 @@ func main() {
 	}
 }
 
-// check if processor calculations are correct
-func check_multiplition(a int, b int, p int) bool {
-	if a*b == p {
-		return true
-	} else {
-		return false
-	}
-}
-
-// get number of loops from user input
 func get_num_loops() int {
 	var num_loops int
 	fmt.Scanln(&num_loops)
 	return num_loops
 }
 
-// process calculations from input
 func process_input() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	return scanner.Text()
 }
 
-// check each processor
 func check_processor(calc string) string {
 	s := strings.Fields(calc)
 	num1, _ := strconv.Atoi(s[0])
